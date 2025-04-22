@@ -1,5 +1,4 @@
-require 'lexile'
-require 'atos'
+require 'lexile_atos'
 
 describe Lexile do
   describe "#search" do
