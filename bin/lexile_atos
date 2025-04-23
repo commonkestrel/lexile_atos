@@ -27,13 +27,22 @@ lexile = Lexile.search argument
 lexile = if lexile.nil?
            "Not found!"
          else
+           series_name = lexile["work"]["series_name"]
+           series_name = series_name.nil? ? "" : series_name + " "
+
+           puts "#{series_name}#{lexile["work"]["title"]}"
            measurements = lexile["work"]["measurements"]
            measurement = measurements.values[0]
            measurement["lexile"]
          end
 
 atos = Atos.search argument
+atos = if atos.nil?
+         "AR: Not found"
+       else
+         "AR Level: #{atos.level}\nAR Points: #{atos.points}"
+       end
 atos ||= "Not found!"
 
 puts "Lexile: #{lexile}"
-puts "Atos: #{atos}"
+puts atos
